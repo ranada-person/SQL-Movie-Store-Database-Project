@@ -1,0 +1,39 @@
+SET ECHO ON;
+SPOOL Project3Scripts.lst;
+
+
+-- Retrieve all of your customers' names, account numbers, and addresses (street and zip code only), sorted by account number.
+SELECT CustomerFirstName, CustomerLastName, CustomerID, Address, ZipCode 
+	FROM Customer 
+ORDER BY CustomerID;
+
+
+-- Retrieve all of the videos rented in the last 30 days and sort in chronological rental date order. This script will need to run today and three months from now.
+SELECT * 
+	FROM Rental 
+WHERE RentalDate >= (SYSDATE-30) 
+ORDER BY RentalDate;
+
+
+-- Produce a list of your distributors and all their information sorted in order by company name.
+SELECT * 
+	FROM Distributor 
+ORDER BY name;
+
+
+-- Update a customer name to change their maiden name to a married name. You can choose which row to update. Make sure that you use the primary key column in your WHERE clause
+---- to affect only a specific row. You may want to include a ROLLBACK statement to undo your data update.
+UPDATE Customer
+	SET CustomerLastName = 'Curtis' 
+WHERE CustomerID = 100140;
+
+
+-- Delete a customer from the database. You can choose which row to delete. Make sure that you use the primary key column in your WHERE clause to affect only a specific row. You may
+---- want to include a ROLLBACK statement to undo your data deletion. 
+DELETE FROM Customer 
+	WHERE CustomerID = 100120;
+
+
+SPOOL OFF
+
+
